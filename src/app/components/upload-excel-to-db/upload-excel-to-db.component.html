@@ -1,0 +1,47 @@
+<div class="loading" *ngIf="imageKey">Loading&#8230;</div>
+<div class="container">
+
+    <div class="row"> 
+        <div class="col-sm-6">
+                <h3>Upload Zip File</h3>
+            <div style="margin-top: 10px" class="shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <input type="file" id="file" (change)="handleFileInput($event.target.files)" size="60">
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary btn-sm" type="button" id="cancelFile" (click)="cancelFile()">cancel</button>
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="submit" class="btn btn-primary btn-sm" id="upload" (click)="uploadConfigFile()">Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>   
+        <!-- <div class="col-sm-6">
+                <h3>Upload Folder</h3>
+            <div style="margin-top: 10px" class="shadow-lg p-3 mb-5 bg-white rounded">
+                <div class="row">
+                    <div class="col-sm-8">
+                        <input #folderInput type="file" id="files" (change)="filesPicked($event.target.files)" webkitDirectory>
+                    </div>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary btn-sm" type="button" id="cancelFolder" (click)="cancelFolder()">cancel</button>
+                    </div>
+                    <div class="col-sm-2">
+                            <button type="submit" class="btn btn-primary btn-sm" id="upload" (click)="uploadDataFile()">Upload</button>
+                        </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <div *ngFor="let item of result | keyvalue">
+        <b>result of excel to db upload&nbsp;</b>
+        <b>{{item.key}} = {{item.value}}</b>
+    </div>
+<hr/>
+    <div *ngFor="let item of esResult | keyvalue">
+        <b>result of db to es&nbsp;</b>
+        <b>{{item.key}} = {{item.value}}</b>
+    </div>
+</div>
