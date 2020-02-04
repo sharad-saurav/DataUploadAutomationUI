@@ -1,0 +1,9 @@
+---
+applications:
+- name: Data-Upload-UI
+  host: Data-Upload-UI
+  instances: 1
+  memory: 256M
+  env:
+      JBP_CONFIG_TOMCAT: '{tomcat: { version: 8.5.+ }}'
+      JBP_CONFIG_OPEN_JDK_JRE: '{jre: { version: 1.8.0_+ }}'

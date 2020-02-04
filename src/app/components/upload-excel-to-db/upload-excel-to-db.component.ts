@@ -15,6 +15,7 @@ import { HttpHeaders } from '@angular/common/http';
 export class UploadExcelToDBComponent implements OnInit {
   fileToUpload: File = null;
   files: any = [];
+  configurationFileToUpload: any = [];
   result:any = {};
   esResult:any = {};
   imageKey:boolean = false;
@@ -26,8 +27,10 @@ export class UploadExcelToDBComponent implements OnInit {
   handleFileInput(files: FileList) {
     this.fileToUpload = files.item(0);
     let fileName = this.fileToUpload.name;
+    console.log(fileName);
     let extn = fileName.split(".").pop();
-    if(extn != "zip || ZIP"){
+    console.log(extn);
+    if(extn != "zip"){ 
       alert("Only zip file allowed");
       (<HTMLInputElement>document.getElementById("file")).value = '';
       this.fileToUpload = null;
@@ -39,14 +42,19 @@ export class UploadExcelToDBComponent implements OnInit {
     this.files = files; 
   }
 
+  handleConfigurationFileInput(files: FileList) {
+    this.configurationFileToUpload = files.item(0);
+  }
 
 
-  uploadConfigFile() {
+
+  uploadAllFiles() {
     this.imageKey = true;
     const formData: FormData = new FormData();
     console.log(this.fileToUpload);
     formData.append("file", this.fileToUpload, "file");
-    this.httpClient.post('http://127.0.0.1:8080/uploadFile',formData).subscribe((data:any) =>{  
+    formData.append("configurationFile", this.configurationFileToUpload, "configurationFile");
+    this.httpClient.post('http://localhost:8080/uploadFile',formData).subscribe((data:any) =>{  
       this.esResult = data.esResult;
       this.result = data.result;
       console.log("hello", this.result);
@@ -67,7 +75,7 @@ export class UploadExcelToDBComponent implements OnInit {
       formData.append('file', this.files[i], this.files[i].name);
     } 
 
-    this.httpClient.post('http://127.0.0.1:8080/uploadDataFiles',formData).subscribe(data =>{  
+    this.httpClient.post('https://data-upload-java.mybluemix.net/uploadDataFiles',formData).subscribe(data =>{  
       console.log("hello");
     },
     error =>{ console.log('oops', error)
@@ -80,7 +88,9 @@ export class UploadExcelToDBComponent implements OnInit {
     (<HTMLInputElement>document.getElementById("file")).value = '';
   };
 
-  cancelFolder(){
-    (<HTMLInputElement>document.getElementById("files")).value = '';
+  cancelConfigurationFile(){
+    console.log((<HTMLInputElement>document.getElementById("cancelConfigurationFile")).value);
+    (<HTMLInputElement>document.getElementById("cancelConfigurationFile")).value = '';
+    this.configurationFileToUpload = "";
   };
 }

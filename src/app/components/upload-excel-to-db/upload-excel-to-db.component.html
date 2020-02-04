@@ -1,39 +1,39 @@
 <div class="loading" *ngIf="imageKey">Loading&#8230;</div>
 <div class="container">
 
-    <div class="row"> 
+    <div class="row shadow-lg p-3 mb-5 bg-white rounded"> 
         <div class="col-sm-6">
                 <h3>Upload Zip File</h3>
-            <div style="margin-top: 10px" class="shadow-lg p-3 mb-5 bg-white rounded">
+            <div style="margin-top: 10px">
                 <div class="row">
-                    <div class="col-sm-8">
+                    <div class="col-sm-6">
                         <input type="file" id="file" (change)="handleFileInput($event.target.files)" size="60">
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-6">
                         <button class="btn btn-primary btn-sm" type="button" id="cancelFile" (click)="cancelFile()">cancel</button>
                     </div>
-                    <div class="col-sm-2">
+                    <!-- <div class="col-sm-2">
                         <button type="submit" class="btn btn-primary btn-sm" id="upload" (click)="uploadConfigFile()">Upload</button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>   
-        <!-- <div class="col-sm-6">
-                <h3>Upload Folder</h3>
-            <div style="margin-top: 10px" class="shadow-lg p-3 mb-5 bg-white rounded">
+        <div class="col-sm-6">
+                <h3>Upload Configuration File</h3>
+            <div style="margin-top: 10px" >
                 <div class="row">
-                    <div class="col-sm-8">
-                        <input #folderInput type="file" id="files" (change)="filesPicked($event.target.files)" webkitDirectory>
+                    <div class="col-sm-6">
+                        <input type="file" id="file" (change)="handleConfigurationFileInput($event.target.files)" >
                     </div>
-                    <div class="col-sm-2">
-                        <button class="btn btn-primary btn-sm" type="button" id="cancelFolder" (click)="cancelFolder()">cancel</button>
+                    <div class="col-sm-3">
+                        <button class="btn btn-primary btn-sm" type="button" id="cancelConfigurationFile" (click)="cancelConfigurationFile()">cancel</button>
                     </div>
-                    <div class="col-sm-2">
-                            <button type="submit" class="btn btn-primary btn-sm" id="upload" (click)="uploadDataFile()">Upload</button>
-                        </div>
+                    <div class="col-sm-3">
+                        <button type="submit" class="btn btn-primary btn-sm" id="upload" (click)="uploadAllFiles()">Upload</button>
+                    </div>
                 </div>
             </div>
-        </div> -->
+        </div>
     </div>
     <div *ngFor="let item of result | keyvalue">
         <b>result of excel to db upload&nbsp;</b>
